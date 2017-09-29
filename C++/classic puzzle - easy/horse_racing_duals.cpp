@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <vector>
+#include <list>
 #include <algorithm>
 
 using namespace std;
@@ -11,32 +11,33 @@ using namespace std;
 **/
 int main()
 {
-	int N, D;
-	std::vector<int> vec;
+	int N;
+
+	std::list<int> horsesStrength;
+	int closestStrength = -1;
+
 	cin >> N; cin.ignore();
-
-	for (int i = 0; i < N; i++)
-	{
+	for (int i = 0; i < N; i++) {
 		int Pi;
-		// push the horse strength in vector
-		vec.push_back(Pi);
-
-		cin >> Pi;
-		cin.ignore();
+		cin >> Pi; cin.ignore();
+		// push horse strength in list
+		horsesStrength.push_back(Pi);
 	}
 
-	cerr << "N: " << N << endl;
-
-	// Write an action using cout. DON'T FORGET THE "<< endl"
-	// To debug: cerr << "Debug messages..." << endl;
-
-	cout << "answer" << endl;
-}
-
-public void BubbleSort(std::vector<int> vec)
-{
-	for ()
+	// sort list 
+	horsesStrength.sort();
+	
+	for (std::list<int>::iterator it = horsesStrength.begin(); it != horsesStrength.end(); ++it)
 	{
+		// check if last element dont compare anymore horse strength
+		if (it == std::prev(horsesStrength.end())) break;
 
+		int strength = *next(it) - (*it);
+
+		if (closestStrength == -1 || strength < closestStrength)
+			closestStrength = strength;
 	}
+
+	// result output
+	cout << closestStrength << endl;
 }
