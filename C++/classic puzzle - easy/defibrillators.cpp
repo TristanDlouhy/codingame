@@ -22,26 +22,26 @@ int main()
 	double closestDistance = std::numeric_limits<double>::max();
 
 	// read longitude location
-    string LON;
-    cin >> LON; cin.ignore();
+	string LON;
+	cin >> LON; cin.ignore();
 	std::replace(LON.begin(), LON.end(), ',', '.');
 	double Longitude = std::stod(LON);
 
 	// read latitude location
-    string LAT;
-    cin >> LAT; cin.ignore();
+	string LAT;
+	cin >> LAT; cin.ignore();
 	std::replace(LAT.begin(), LAT.end(), ',', '.');
 	double Latitude = std::stod(LAT);
 
 	// read stations
-    int N;
-    cin >> N; cin.ignore();
+	int N;
+	cin >> N; cin.ignore();
 
-    for (int i = 0; i < N; i++) 
+	for (int i = 0; i < N; i++)
 	{
-        string DEFIB = "";
-        getline(cin, DEFIB);
-		
+		string DEFIB = "";
+		getline(cin, DEFIB);
+
 		std::vector<std::string> substring = Split("[;]+", DEFIB);
 		string stationName = substring[1];
 
@@ -52,7 +52,7 @@ int main()
 		double stationLAT = std::stod(substring[substring.size() - 1]);
 
 		double distance = CalculateDistance(Longitude, Latitude, stationLON, stationLAT);
-		
+
 		if (closestStation.empty())
 		{
 			closestStation = stationName;
@@ -63,9 +63,9 @@ int main()
 			closestStation = stationName;
 			closestDistance = distance;
 		}
-    }
+	}
 
-    cout << closestStation << endl;
+	cout << closestStation << endl;
 }
 
 std::vector<std::string> Split(std::string strSep, std::string str)
